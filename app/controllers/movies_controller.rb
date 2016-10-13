@@ -5,8 +5,11 @@ class MoviesController < ApplicationController
   end
 end
 
-private
-
-  def movie_params
+def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
-  end
+end
+
+def show
+    @movie = Movie.find_by_id(params[:id]) # what if this movie not in DB?
+    # BUG: we should check @movie for validity here!
+end
